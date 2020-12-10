@@ -46,7 +46,8 @@ Usage
 
  simple example:
 
-    >>> api = pysony.SonyAPI()
+    >>> cameraList = pysony.ControlPoint().discover()
+    >>> api = pysony.SonyAPI(QX_ADDR=cameraList[0])
     >>> api.getAvailableApiList()
 
 api_list

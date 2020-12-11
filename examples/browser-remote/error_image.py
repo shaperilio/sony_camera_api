@@ -36,7 +36,11 @@ def get_jpeg_for_message(msg):
     try:
         font = ImageFont.truetype("Menlo.ttc", 15) # mac
     except:
-        font = ImageFont.truetype("arial.ttf", 15) # windows
+        try:
+            font = ImageFont.truetype("arial.ttf", 15) # windows
+        except:
+            font = ImageFont.truetype("DejaVuSans.ttf", 15) # ubuntu
+
     msg = time.strftime('%Y-%m-%d %H:%M:%S') + '\n' + wrap(msg)
     draw.text((10, 10),msg,(255,255,255),font=font)
     # BytesIO cleverness from https://stackoverflow.com/a/14921165/149506

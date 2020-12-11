@@ -9,12 +9,14 @@ here = os.path.abspath(os.path.dirname(__file__))
 try:
     README = open(os.path.join(here, 'README.md')).read()
 except IOError:
-    README = 'https://github.com/Bloodevil/sony_camera_api/blob/master/README.md'
+    README = 'https://github.com/shaperilio/sony_camera_api/blob/master/README.md'
 
 version = '0.1.12'
 
 install_requires = [
 ]
+
+test_requirements = ['six>=1.10.0,<2']
 
 setup(name='pysony',
     version = version,
@@ -22,12 +24,14 @@ setup(name='pysony',
     long_description = README,
     author='Yeaji Shin',
     author_email='yeahjishin@gmail.com',
-    url='https://github.com/Bloodevil/sony_camera_api',
-    download_url='https://github.com/Bloodevil/sony_camera_api/tarball/%s'%version,
+    url='https://github.com/shaperilio/sony_camera_api',
+    download_url='https://github.com/shaperilio/sony_camera_api/tarball/%s'%version,
     license='MIT',
     install_requires=install_requires,
     packages=find_packages('src'),
     package_dir = {'': 'src'},
+    test_suite='tests',
+    tests_require=test_requirements,
     py_modules=["pysony"],
     keywords=['sony', 'camera', 'remote', 'api'],
     classifiers=[

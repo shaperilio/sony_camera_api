@@ -6,6 +6,8 @@ from uuid import uuid1
 from six.moves.urllib_parse import urlparse
 from six.moves.BaseHTTPServer import HTTPServer
 
+import sys, os
+sys.path.append(os.path.join(os.path.dirname(__file__), '../src'))
 import pysony
 from .utils.http import FileRequestHandler
 from .utils.ssdp import SSDPServer

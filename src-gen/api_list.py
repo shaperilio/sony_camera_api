@@ -1,3 +1,5 @@
+# No idea how old this is. As of December 2020, the latest documentation from
+# Sony is from February 2017.
 exist_param = ["setShootMode",
                "startLiveviewWithSize",
                "setLiveviewFrameInfo",

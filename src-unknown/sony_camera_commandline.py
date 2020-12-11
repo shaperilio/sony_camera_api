@@ -10,6 +10,7 @@ if len(sys.argv) > 1:
     if len(sys.argv) > 2:
         param = list(sys.argv[2:])
 
+# Broken code; can't call SonyAPI() with no arguments to connect to a camera.
 sony = SonyAPI()
 pp = pprint.PrettyPrinter(indent=4)
 pp.pprint(sony._cmd(method, param=None))

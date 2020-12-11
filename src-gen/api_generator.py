@@ -1,3 +1,8 @@
+# This file generates python code from a list of Sony API calls, e.g.:
+# def setShootMode(self, param=None):
+#     return self._cmd(method="setShootMode", param=param)
+# It was used presumably to create most of the code in the SonyAPI class.
+
 from __future__ import print_function
 
 from api_list import exist_param, no_param

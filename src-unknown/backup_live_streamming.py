@@ -1,3 +1,6 @@
+# Broken code; can't call SonyAPI() with no arguments to connect to a camera.
+# Also, I don't know what this does.
+
 from pysony import SonyAPI
 def liveview(filename=None):
     camera = SonyAPI()

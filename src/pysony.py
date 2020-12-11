@@ -325,11 +325,12 @@ class SonyAPI():
 
             self.header = None
             self.frameinfo = []
+            self._stop = False
 
         def run(self):
             sess = urlopen(self.lv_url)
 
-            while True:
+            while not self._stop:
                 header = sess.read(8)
                 ch = common_header(header)
 
@@ -352,6 +353,9 @@ class SonyAPI():
 
                 sess.read(payload['padding_size'])
 
+        def stop(self):
+            self._stop = True
+            
         def get_header(self):
             if not self.header:
                 try:

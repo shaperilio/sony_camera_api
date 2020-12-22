@@ -331,27 +331,32 @@ class SonyAPI():
             sess = urlopen(self.lv_url)
 
             while not self._stop:
-                header = sess.read(8)
-                ch = common_header(header)
+                try:
+                    header = sess.read(8)
+                    ch = common_header(header)
 
-                data = sess.read(128)
-                payload = payload_header(data, payload_type=ch['payload_type'])
+                    data = sess.read(128)
+                    payload = payload_header(data, payload_type=ch['payload_type'])
 
-                if ch['payload_type'] == 1:
-                    data_img = sess.read(payload['jpeg_data_size'])
-                    assert len(data_img) == payload['jpeg_data_size']
+                    if ch['payload_type'] == 1:
+                        data_img = sess.read(payload['jpeg_data_size'])
+                        assert len(data_img) == payload['jpeg_data_size']
 
-                    self._lilo_head_pool.put(header)
-                    self._lilo_jpeg_pool.put(data_img)
+                        self._lilo_head_pool.put(header)
+                        self._lilo_jpeg_pool.put(data_img)
 
-                elif ch['payload_type'] == 2:
-                    self.frameinfo = []
+                    elif ch['payload_type'] == 2:
+                        self.frameinfo = []
 
-                    for x in range(payload['frame_count']):
-                        data_img = sess.read(payload['frame_size'])
-                        self.frameinfo.append(payload_frameinfo(data_img))
+                        for x in range(payload['frame_count']):
+                            data_img = sess.read(payload['frame_size'])
+                            self.frameinfo.append(payload_frameinfo(data_img))
 
-                sess.read(payload['padding_size'])
+                    sess.read(payload['padding_size'])
+                except:
+                    # TODO: Improve this.
+                    self._stop = True
+                    break
 
         def stop(self):
             self._stop = True
